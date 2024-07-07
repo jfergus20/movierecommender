@@ -1,3 +1,6 @@
+# Auto-Generated ReadMe
+Enter the titles for 3-5 movies/tv shows, app recommends the next one for you to watch.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
