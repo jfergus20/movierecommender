@@ -17,7 +17,6 @@ async function fetchTMDBData() {
                 'Content-Type': 'application/json;charset=utf-8'
             }
         });
-        //console.log('rd ' + JSON.stringify(response.data, null, 3))
         return response.data;
     } catch (error) {
         console.error('Error fetching data from TMDB:', error.message);

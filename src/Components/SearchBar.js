@@ -3,9 +3,8 @@ import "./SearchBar.css";
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 
-function SearchBar({ placeholder, data }) {
+function SearchBar({ placeholder, data, onItemSelect }) {
     const [filteredData, setFilteredData] = useState([]);
-
     const [wordEntered, setWordEntered] = useState("");
 
     const handleFilter = (event) => {
@@ -25,6 +24,12 @@ function SearchBar({ placeholder, data }) {
     const clearInput = () => {
         setFilteredData([]);
         setWordEntered("");
+    };
+
+    const handleItemClick = (item) => {
+        setWordEntered(item.title);
+        setFilteredData([]);
+        onItemSelect(item);
     };
 
     return (
@@ -48,9 +53,13 @@ function SearchBar({ placeholder, data }) {
                 <div className="dataResult">
                     {filteredData.slice(0, 15).map((value, key) => {
                         return (
-                            <a className="dataItem" href={value.link} target="_blank">
-                                <p>{value.title} </p>
-                            </a>
+                            <div
+                                key={key}
+                                className="dataItem"
+                                onClick={() => handleItemClick(value)}
+                            >
+                                <p>{value.title}</p>
+                            </div>
                         );
                     })}
                 </div>
@@ -60,13 +69,3 @@ function SearchBar({ placeholder, data }) {
 }
 
 export default SearchBar;
-
-/**
- * 
- * 
- * {filteredData.length === 0 ? (
-                        <SearchIcon />
-                    ) : (
-                        <CloseIcon id="clearBtn" onClick={clearInput} />
-                    )}
- */
